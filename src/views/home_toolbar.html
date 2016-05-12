@@ -1,10 +1,10 @@
-<div>
+<div ng-controller="basicInformationController as basic">
   <div class="md-toolbar-tools">
     <md-button class="md-icon-button" aria-label="Settings">
       <md-icon>menu</md-icon>
     </md-button>
     <h2>
-      <span>Toolbar with Icon Buttons</span>
+      <span>{{basic.personData.name}} {{basic.personData.surName}}</span>
     </h2>
     <span flex></span>
     <md-button class="md-fab move-down" aria-label="Eat cake">

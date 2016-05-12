@@ -103,13 +103,13 @@
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <div class=\"md-toolbar-tools\">\n    <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n      <md-icon>menu</md-icon>\n    </md-button>\n    <h2>\n      <span>Toolbar with Icon Buttons</span>\n    </h2>\n    <span flex></span>\n    <md-button class=\"md-fab move-down\" aria-label=\"Eat cake\">\n      <md-icon>account_circle</md-icon>\n    </md-button>\n  </div>\n</div>\n"
+	module.exports = "<div ng-controller=\"basicInformationController as basic\">\n  <div class=\"md-toolbar-tools\">\n    <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n      <md-icon>menu</md-icon>\n    </md-button>\n    <h2>\n      <span>{{basic.personData.name}} {{basic.personData.surName}}</span>\n    </h2>\n    <span flex></span>\n    <md-button class=\"md-fab move-down\" aria-label=\"Eat cake\">\n      <md-icon>account_circle</md-icon>\n    </md-button>\n  </div>\n</div>\n"
 
 /***/ },
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<p>sdfsdf</p>\n"
+	module.exports = "<div ng-controller=\"basicInformationController as basic\">\n\n</div>\n"
 
 /***/ },
 /* 9 */
