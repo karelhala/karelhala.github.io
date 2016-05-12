@@ -21,11 +21,10 @@ export default class BasicInformationLoader {
   }
 
   private fillObject(personData: any) {
-    console.log(moment);
     personData.dateObject = moment(personData.bornTimeStamp);
     personData.getAge = () => {
       personData.diffTime = moment.duration(moment().diff(personData.dateObject));
-      return personData.diffTime.asYears();
+      return Math.round(personData.diffTime.asYears());
     };
   }
 

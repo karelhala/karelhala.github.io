@@ -25,7 +25,7 @@ var webpack = require('webpack'),
     }),
     new webpack.optimize.CommonsChunkPlugin(
       settings.appName,
-        settings.distFolder + '/' + settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
+      settings.distFolder + '/' + settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
     ),
     new ExtractTextPlugin(settings.stylesheetPath),
     new NgAnnotatePlugin({add: true})
@@ -72,5 +72,9 @@ module.exports = {
       // inline images/fonts less than  20Kb otherwise file-loader is used
     ]
   },
-  plugins: plugins
+  plugins: plugins,
+  externals: {
+    'angular': 'angular',
+    'moment': 'moment'
+  }
 };
