@@ -1,0 +1,17 @@
+.move-up {
+  position: relative;
+  top: -30px;
+  z-index: 99;
+}
+
+.md-toolbar-tools {
+  button.move-down {
+    right: 40px;
+    top: 50px;
+    z-index: 999;
+  }
+}
+
+.split-from-top {
+  margin-top: 10px;
+}
