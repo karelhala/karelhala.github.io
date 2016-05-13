@@ -33,7 +33,12 @@
 }
 
 .cv-content {
+  margin-top: 15px;
+  &.cv-timeline-trend {
+    padding-top: 20px;
+  }
   h3 {
     text-align: center;
   }
 }
+

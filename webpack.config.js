@@ -39,7 +39,8 @@ if(production){
 
 appEntry[settings.appName] = [
   settings.sassEntryPoint,
-  settings.tsEntryPoint
+  settings.tsEntryPoint,
+  '.' + settings.sourceFolder + settings.stylesFolder + '/' + 'timeline.scss'
 ];
 module.exports = {
   context: __dirname,
