@@ -15,6 +15,14 @@
   font-weight: bold; }
 
 .cv-move-speed-dial {
-  margin-top: 80px; }
+  margin-top: 104px; }
+  .cv-move-speed-dial .md-button {
+    margin: 6px 8px; }
+
+.cv-menu-picture {
+  height: 80px; }
+
+.cv-content h3 {
+  text-align: center; }
 
 /*# sourceMappingURL=karel-hala-cv.css.map*/

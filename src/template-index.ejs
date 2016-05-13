@@ -2,15 +2,16 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Angular Material style sheet -->
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body ng-app="karelHalaCV" ng-cloak layout="column">
 <md-toolbar>
     <div ui-view="toolbar"></div>
 </md-toolbar>
 <md-content layout-align="center stretch" layout="row">
-    <div flex="66" layout-fill>
+    <div flex-gt-sm="66" layout-fill>
         <div ui-view="content"></div>
     </div>
 </md-content>

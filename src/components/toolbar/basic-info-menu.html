@@ -3,6 +3,10 @@
     <md-icon>account_circle</md-icon>
   </md-button>
   <md-menu-content width="6">
+    <md-menu-item class="cv-menu-picture">
+      <span class="cv-bold"></span>
+      <span><img src="{{vm.personObject.picture}}"></span>
+    </md-menu-item>
     <md-menu-item>
       <span class="cv-bold">Name and Surname</span>
       <span>{{vm.personObject.name}} {{vm.personObject.surName}}</span>

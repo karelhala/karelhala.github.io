@@ -21,5 +21,19 @@
 }
 
 .cv-move-speed-dial {
-  margin-top: 80px;
+  margin-top: 104px;
+
+  .md-button {
+    margin: 6px 8px;
+  }
+}
+
+.cv-menu-picture {
+  height: 80px;
+}
+
+.cv-content {
+  h3 {
+    text-align: center;
+  }
 }

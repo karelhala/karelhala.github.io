@@ -106,13 +106,13 @@
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-controller=\"basicInformationController as basic\">\n  <div class=\"md-toolbar-tools\">\n    <speed-dial></speed-dial>\n    <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n      <md-icon>menu</md-icon>\n    </md-button>\n    <h2>\n      <span>{{basic.personData.name}} {{basic.personData.surName}}</span>\n    </h2>\n    <span flex></span>\n    <basic-info-menu person-object=\"basic.personData\"></basic-info-menu>\n\n  </div>\n</div>\n"
+	module.exports = "<div ng-controller=\"basicInformationController as basic\">\n  <div class=\"md-toolbar-tools\">\n    <speed-dial></speed-dial>\n    <h2>\n      <span>{{basic.personData.name}} {{basic.personData.surName}}</span>\n    </h2>\n    <span flex></span>\n    <basic-info-menu person-object=\"basic.personData\"></basic-info-menu>\n\n  </div>\n</div>\n"
 
 /***/ },
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n</div>\n"
+	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content\">\n    <h3>This is Timeline</h3>\n    <p>In et pretium mi, in pharetra odio. Suspendisse a urna dapibus, viverra turpis quis, tincidunt neque. Donec eget auctor tellus. Morbi et ipsum turpis. Suspendisse potenti. Nam sodales quis augue in semper. Vivamus ac mi sit amet neque gravida dictum. Etiam quis egestas metus, quis mattis enim. Nullam at velit nec tellus vehicula tristique vel non odio. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer sed sollicitudin ante, pulvinar fermentum enim. Donec pulvinar, ex blandit mattis facilisis, nibh urna sagittis nisl, eu mollis ex ex pulvinar metus. Cras id su</p>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\">\n    <h3>This is Graphs</h3>\n    <div layout=\"row\">\n      <md-card flex-gt-sm=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with  image</span>\n            <span class=\"md-subhead\">Extra Large</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-content layout=\"row\" layout-align=\"space-between\">\n          <div class=\"md-media-xl card-media\">\n            <img src=\"https://i.ytimg.com/vi/jzdEi0YHEKM/maxresdefault.jpg\" width=\"240px\">\n          </div>\n          <md-card-actions layout=\"column\">\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>menu</md-icon>\n            </md-button>\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>mode_comment</md-icon>\n            </md-button>\n          </md-card-actions>\n        </md-card-content>\n      </md-card>\n      <md-card flex-gt-sm=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with  image</span>\n            <span class=\"md-subhead\">Extra Large</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-content layout=\"row\" layout-align=\"space-between\">\n          <div class=\"md-media-xl card-media\">\n            <img src=\"https://i.ytimg.com/vi/jzdEi0YHEKM/maxresdefault.jpg\" width=\"240px\">\n          </div>\n          <md-card-actions layout=\"column\">\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>menu</md-icon>\n            </md-button>\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>mode_comment</md-icon>\n            </md-button>\n          </md-card-actions>\n        </md-card-content>\n      </md-card>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 9 */
@@ -223,7 +223,7 @@
 
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
-	var loader_1 = __webpack_require__(18);
+	var loader_1 = __webpack_require__(15);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    loader_1.default(module);
@@ -231,16 +231,13 @@
 
 
 /***/ },
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="../../tsd.d.ts"/>
-	var basicInfoMenuComponent_1 = __webpack_require__(19);
-	var speedDialComponent_1 = __webpack_require__(22);
+	var basicInfoMenuComponent_1 = __webpack_require__(16);
+	var speedDialComponent_1 = __webpack_require__(19);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('basicInfoMenu', new basicInfoMenuComponent_1.default);
@@ -249,16 +246,16 @@
 
 
 /***/ },
-/* 19 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var basicMenuController_1 = __webpack_require__(20);
+	var basicMenuController_1 = __webpack_require__(17);
 	var BasicMenuComponent = (function () {
 	    function BasicMenuComponent() {
 	        this.replace = true;
-	        this.template = __webpack_require__(21);
+	        this.template = __webpack_require__(18);
 	        this.controller = basicMenuController_1.default;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -272,7 +269,7 @@
 
 
 /***/ },
-/* 20 */
+/* 17 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
@@ -291,22 +288,22 @@
 
 
 /***/ },
-/* 21 */
+/* 18 */
 /***/ function(module, exports) {
 
-	module.exports = "<md-menu md-position-mode=\"target-right target\">\n  <md-button class=\"md-fab move-down\" aria-label=\"Show basic details\" ng-click=\"vm.openMenu($mdOpenMenu, $event)\">\n    <md-icon>account_circle</md-icon>\n  </md-button>\n  <md-menu-content width=\"6\">\n    <md-menu-item>\n      <span class=\"cv-bold\">Name and Surname</span>\n      <span>{{vm.personObject.name}} {{vm.personObject.surName}}</span>\n    </md-menu-item>\n    <md-menu-divider></md-menu-divider>\n    <md-menu-item>\n      <span class=\"cv-bold\">Birth date</span>\n      <span>{{vm.personObject.dateObject.format('DD.MM.YYYY')}}</span>\n    </md-menu-item>\n    <md-menu-item>\n      <span class=\"cv-bold\">Age</span>\n      <span>{{vm.personObject.getAge()}}</span>\n    </md-menu-item>\n  </md-menu-content>\n</md-menu>\n"
+	module.exports = "<md-menu md-position-mode=\"target-right target\">\n  <md-button class=\"md-fab move-down\" aria-label=\"Show basic details\" ng-click=\"vm.openMenu($mdOpenMenu, $event)\">\n    <md-icon>account_circle</md-icon>\n  </md-button>\n  <md-menu-content width=\"6\">\n    <md-menu-item class=\"cv-menu-picture\">\n      <span class=\"cv-bold\"></span>\n      <span><img src=\"{{vm.personObject.picture}}\"></span>\n    </md-menu-item>\n    <md-menu-item>\n      <span class=\"cv-bold\">Name and Surname</span>\n      <span>{{vm.personObject.name}} {{vm.personObject.surName}}</span>\n    </md-menu-item>\n    <md-menu-divider></md-menu-divider>\n    <md-menu-item>\n      <span class=\"cv-bold\">Birth date</span>\n      <span>{{vm.personObject.dateObject.format('DD.MM.YYYY')}}</span>\n    </md-menu-item>\n    <md-menu-item>\n      <span class=\"cv-bold\">Age</span>\n      <span>{{vm.personObject.getAge()}}</span>\n    </md-menu-item>\n  </md-menu-content>\n</md-menu>\n"
 
 /***/ },
-/* 22 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var speedDialController_1 = __webpack_require__(23);
+	var speedDialController_1 = __webpack_require__(20);
 	var SpeedDialComponent = (function () {
 	    function SpeedDialComponent() {
 	        this.replace = true;
-	        this.template = __webpack_require__(24);
+	        this.template = __webpack_require__(21);
 	        this.controller = speedDialController_1.default;
 	        this.controllerAs = 'vm';
 	        this.bindings = {};
@@ -318,7 +315,7 @@
 
 
 /***/ },
-/* 23 */
+/* 20 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
@@ -336,10 +333,10 @@
 
 
 /***/ },
-/* 24 */
+/* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "<md-fab-speed-dial md-open=\"vm.isOpen\" md-direction=\"{{vm.direction}}\"\n                   ng-class=\"vm.selectedMode\" class=\"cv-move-speed-dial\">\n  <md-fab-trigger>\n    <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n      <md-icon>menu</md-icon>\n    </md-button>\n  </md-fab-trigger>\n  <md-fab-actions>\n    <md-button aria-label=\"Twitter\" class=\"md-fab md-raised md-mini\">\n      <md-icon>build</md-icon>\n    </md-button>\n    <md-button aria-label=\"Twitter\" class=\"md-fab md-raised md-mini\">\n      <md-icon>build</md-icon>\n    </md-button>\n  </md-fab-actions>\n</md-fab-speed-dial>\n"
+	module.exports = "<md-fab-speed-dial md-open=\"vm.isOpen\" md-direction=\"{{vm.direction}}\"\n                   ng-class=\"vm.selectedMode\" class=\"cv-move-speed-dial\">\n  <md-fab-trigger>\n    <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n      <md-icon>menu</md-icon>\n    </md-button>\n  </md-fab-trigger>\n  <md-fab-actions>\n    <md-button aria-label=\"Twitter\" class=\"md-fab md-raised md-mini\">\n      <md-tooltip md-direction=\"right\"\n                  md-autohide=\"false\">Timeline</md-tooltip>\n      <md-icon>device_hub</md-icon>\n    </md-button>\n    <md-button aria-label=\"Twitter\" class=\"md-fab md-raised md-mini\">\n      <md-tooltip md-direction=\"right\"\n                  md-autohide=\"false\">Graphs</md-tooltip>\n      <md-icon>equalizer</md-icon>\n    </md-button>\n  </md-fab-actions>\n</md-fab-speed-dial>\n"
 
 /***/ }
 /******/ ]);
