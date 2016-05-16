@@ -202,8 +202,8 @@
   font-size: 15px;
   float: left;
   cursor: pointer; }
-  .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon .material-icons {
-    margin-top: 6px; }
+  .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon .md-icon-button {
+    left: -6px; }
 
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon.bg-primary {
   background-color: #303641;

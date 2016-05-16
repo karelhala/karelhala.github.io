@@ -4,7 +4,9 @@
     <time class="timeline-time" datetime="{{vm.entry.timeObject.format('YYYY-MM-DD')}}"><span>{{vm.entry.timeObject.format('DD.MM.YYYY')}}</span>
       <span class="cv-time">{{vm.entry.getTime()}}</span></time>
     <div class="timeline-icon {{vm.entry['color-class']}}" ng-click="vm.clicked = !vm.clicked">
-      <md-icon>{{vm.entry.icon}}</md-icon>
+      <md-button class="md-icon-button" aria-label="Settings">
+        <md-icon>{{vm.entry.icon}}</md-icon>
+      </md-button>
     </div>
 
     <div class="timeline-label" ng-class="vm.bounce()">
