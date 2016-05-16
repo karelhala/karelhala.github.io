@@ -2,7 +2,7 @@
                    ng-class="vm.selectedMode" class="cv-move-speed-dial">
   <md-fab-trigger>
     <md-button class="md-icon-button" aria-label="Settings">
-      <md-icon>menu</md-icon>
+      <ng-md-icon icon="{{vm.isOpen ? 'format_align_left' : 'menu'}}" ng-attr-style="fill: {{fill}}" options='{"rotation": "none"}'></ng-md-icon>
     </md-button>
   </md-fab-trigger>
   <md-fab-actions>
