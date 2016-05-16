@@ -41,10 +41,10 @@
     text-align: center; }
 
 /* Bounce animation from: https://codyhouse.co/gem/vertical-timeline/ */
-.timeline-centered .timeline-entry.is-hidden {
+.timeline-centered .timeline-entry .is-hidden {
   visibility: hidden; }
 
-.timeline-centered .timeline-entry.bounce-in {
+.timeline-centered .timeline-entry .bounce-in {
   visibility: visible;
   animation: cd-bounce-1 0.6s; }
 
@@ -200,7 +200,8 @@
   box-shadow: 0 0 0 5px #f5f5f6;
   line-height: 40px;
   font-size: 15px;
-  float: left; }
+  float: left;
+  cursor: pointer; }
   .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon .material-icons {
     margin-top: 6px; }
 
