@@ -46,7 +46,7 @@
 
 	__webpack_require__(1);
 	__webpack_require__(5);
-	module.exports = __webpack_require__(26);
+	module.exports = __webpack_require__(29);
 
 
 /***/ },
@@ -84,7 +84,7 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module
-	        .config(["$stateProvider", function ($stateProvider) {
+	        .config(["$stateProvider", "$locationProvider", "$urlRouterProvider", function ($stateProvider, $locationProvider, $urlRouterProvider) {
 	        $stateProvider.state('home', {
 	            views: {
 	                toolbar: {
@@ -95,6 +95,11 @@
 	                    template: __webpack_require__(8)
 	                }
 	            }
+	        });
+	        $urlRouterProvider.otherwise('/');
+	        $locationProvider.html5Mode({
+	            enabled: false,
+	            requireBase: false
 	        });
 	    }])
 	        .run(["$state", function ($state) {
@@ -122,9 +127,11 @@
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
 	var basicInformationLoader_1 = __webpack_require__(10);
+	var timelineLoader_1 = __webpack_require__(31);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('basicInformationLoader', basicInformationLoader_1.default);
+	    module.service('timelineLoader', timelineLoader_1.default);
 	};
 
 
@@ -148,7 +155,7 @@
 	            return this.personObject;
 	        }
 	        else {
-	            return this.loadPersonPObject().then(function (personData) {
+	            return this.loadPersonObject().then(function (personData) {
 	                _this.fillObject(personData);
 	                _this.personObject = personData;
 	                return _this.personObject;
@@ -162,7 +169,7 @@
 	            return Math.round(personData.diffTime.asYears());
 	        };
 	    };
-	    BasicInformationLoader.prototype.loadPersonPObject = function () {
+	    BasicInformationLoader.prototype.loadPersonObject = function () {
 	        return this.$http.get('/data/basic_info.json').then(function (responseData) {
 	            return responseData.data;
 	        });
@@ -209,7 +216,6 @@
 	                _this.personData = personData;
 	            });
 	        }
-	        console.log(this);
 	    }
 	    BasicInformationController.$inject = ["basicInformationLoader"];
 	    return BasicInformationController;
@@ -279,7 +285,6 @@
 	"use strict";
 	var BasicMenuController = (function () {
 	    function BasicMenuController() {
-	        console.log(this);
 	    }
 	    BasicMenuController.prototype.openMenu = function ($mdOpenMenu, ev) {
 	        $mdOpenMenu(ev);
@@ -325,19 +330,18 @@
 	"use strict";
 	var SpeedDialController = (function () {
 	    /* @ngInject */
-	    function SpeedDialController($document) {
-	        this.$document = $document;
+	    function SpeedDialController($window) {
+	        this.$window = $window;
 	        this.isOpen = false;
 	        this.selectedMode = 'md-scale';
 	        this.direction = 'down';
 	        this.duration = 2000;
+	        this.container = angular.element(document.getElementById('content-container'));
 	    }
-	    SpeedDialController.$inject = ["$document"];
-	    SpeedDialController.prototype.scrollToElement = function (element) {
-	        var offset = 30;
-	        var someElement = angular.element(document.getElementById(element));
-	        console.log(this.$document, someElement);
-	        this.$document.scrollToElement(someElement, offset, this.duration);
+	    SpeedDialController.$inject = ["$window"];
+	    SpeedDialController.prototype.scrollToElement = function (elementId) {
+	        var element = angular.element(document.getElementById(elementId));
+	        this.container.scrollToElementAnimated(element, 0, 400);
 	    };
 	    return SpeedDialController;
 	}());
@@ -358,7 +362,7 @@
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
 	var timelineComponent_1 = __webpack_require__(23);
-	var timelineEntryComponent_1 = __webpack_require__(29);
+	var timelineEntryComponent_1 = __webpack_require__(26);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('timeline', new timelineComponent_1.default);
@@ -372,7 +376,7 @@
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var timelineController_1 = __webpack_require__(28);
+	var timelineController_1 = __webpack_require__(24);
 	var TimelineComponent = (function () {
 	    function TimelineComponent() {
 	        this.replace = true;
@@ -388,28 +392,28 @@
 
 
 /***/ },
-/* 24 */,
-/* 25 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"timeline-centered\">\n      <timeline-entry ng-repeat=\"entry in vm.entries\" is-left=\"$odd\"></timeline-entry>\n      <article class=\"timeline-entry begin\">\n\n        <div class=\"timeline-end\">\n\n          <div class=\"arrow-down\"></div>\n\n        </div>\n\n      </article>\n    </div>\n  </div>\n</div>\n"
-
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 27 */,
-/* 28 */
+/* 24 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
 	var TimelineController = (function () {
-	    function TimelineController() {
-	        this.entries = [{ a: 'asd' }, { b: 'sss' }];
+	    function TimelineController(timelineLoader, basicInformationLoader) {
+	        var _this = this;
+	        this.timelineLoader = timelineLoader;
+	        this.basicInformationLoader = basicInformationLoader;
+	        var person = this.basicInformationLoader.getPersonObject();
+	        if (person.hasOwnProperty('$$state')) {
+	            person.then(function (personData) {
+	                _this.personData = personData;
+	            });
+	        }
+	        var timeline = this.timelineLoader.getTimelineData();
+	        if (timeline.hasOwnProperty('$$state')) {
+	            timeline.then(function (timelineData) {
+	                _this.entries = timelineData;
+	            });
+	        }
 	    }
 	    return TimelineController;
 	}());
@@ -418,20 +422,28 @@
 
 
 /***/ },
-/* 29 */
+/* 25 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container\" id=\"cv-timeline-container\">\n  <div class=\"row\">\n    <div class=\"timeline-centered\">\n      <timeline-entry ng-repeat=\"entry in vm.entries\"\n                      entry=\"entry\"\n                      person-object=\"vm.personData\"\n                      is-left=\"$odd\"></timeline-entry>\n      <article class=\"timeline-entry begin\">\n\n        <div class=\"timeline-end\">\n\n          <div class=\"arrow-down\"></div>\n\n        </div>\n\n      </article>\n    </div>\n  </div>\n</div>\n"
+
+/***/ },
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var timelineEntryController_1 = __webpack_require__(30);
+	var timelineEntryController_1 = __webpack_require__(27);
 	var TimelineEntryComponent = (function () {
 	    function TimelineEntryComponent() {
 	        this.replace = true;
-	        this.template = __webpack_require__(31);
+	        this.template = __webpack_require__(28);
 	        this.controller = timelineEntryController_1.default;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
-	            isLeft: '='
+	            isLeft: '=',
+	            personObject: '=',
+	            entry: '='
 	        };
 	    }
 	    return TimelineEntryComponent;
@@ -441,14 +453,23 @@
 
 
 /***/ },
-/* 30 */
+/* 27 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
 	var TimelineEntryController = (function () {
-	    function TimelineEntryController() {
+	    /* @ngInject */
+	    function TimelineEntryController($window) {
+	        this.$window = $window;
+	        console.log(this);
 	    }
+	    TimelineEntryController.$inject = ["$window"];
+	    TimelineEntryController.prototype.getLeftAligned = function () {
+	        return {
+	            'left-aligned': this.isLeft
+	        };
+	    };
 	    return TimelineEntryController;
 	}());
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -456,10 +477,78 @@
 
 
 /***/ },
-/* 31 */
+/* 28 */
 /***/ function(module, exports) {
 
-	module.exports = "<article class=\"timeline-entry\" ng-class=\"{'left-aligned':vm.isLeft}\">\n\n  <div class=\"timeline-entry-inner\">\n    <time class=\"timeline-time\" datetime=\"2014-01-10T03:45\"><span>03:45 AM</span> <span>Today</span></time>\n    <div class=\"timeline-icon bg-info\">\n      <md-icon>device_hub</md-icon>\n    </div>\n\n    <div class=\"timeline-label\">\n      <h2><a href=\"#\">Art Ramadani</a> <span>posted a status update</span></h2>\n      <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>\n    </div>\n  </div>\n\n</article>\n"
+	module.exports = "<article class=\"timeline-entry\" ng-class=\"vm.getLeftAligned()\">\n\n  <div class=\"timeline-entry-inner\">\n    <time class=\"timeline-time\" datetime=\"{{vm.entry.timeObject.format('YYYY-MM-DD')}}\"><span>{{vm.entry.timeObject.format('DD.MM.YYYY')}}</span>\n      <span class=\"cv-time\">{{vm.entry.getTime()}}</span></time>\n    <div class=\"timeline-icon {{vm.entry['color-class']}}\">\n      <md-icon>{{vm.entry.icon}}</md-icon>\n    </div>\n\n    <div class=\"timeline-label\">\n      <h2>{{vm.personObject.name}} {{vm.personObject.surName}} <span> {{vm.entry.title}}</span></h2>\n      <p>{{vm.entry.text}}</p>\n    </div>\n  </div>\n\n</article>\n"
+
+/***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 30 */,
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	///<reference path="../tsd.d.ts"/>
+	var moment = __webpack_require__(11);
+	var TimelineLoader = (function () {
+	    /* @ngInject */
+	    function TimelineLoader($http) {
+	        this.$http = $http;
+	        this.timelineData = {};
+	    }
+	    TimelineLoader.$inject = ["$http"];
+	    TimelineLoader.prototype.getTimelineData = function () {
+	        var _this = this;
+	        if (this.timelineData.length > 0) {
+	            return this.timelineData;
+	        }
+	        else {
+	            return this.loadTimelineObject().then(function (timelineData) {
+	                angular.forEach(timelineData, function (oneRecord) {
+	                    _this.fillObject(oneRecord);
+	                });
+	                _this.timelineData = timelineData;
+	                return _this.timelineData;
+	            });
+	        }
+	    };
+	    TimelineLoader.prototype.fillObject = function (record) {
+	        record.timeObject = moment(record.time);
+	        record.getTime = function () {
+	            var timeString = '';
+	            record.diffTime = moment.duration(moment().diff(record.time));
+	            if (record.diffTime.years() !== 0) {
+	                timeString += record.diffTime.years() + ' years ';
+	            }
+	            if (record.diffTime.months() !== 0) {
+	                timeString += record.diffTime.months() + ' months ';
+	            }
+	            if (record.diffTime.days() !== 0) {
+	                if (timeString.length !== 0) {
+	                    timeString += 'and ';
+	                }
+	                timeString += record.diffTime.days() + ' days ';
+	            }
+	            timeString += 'ago';
+	            return timeString;
+	        };
+	    };
+	    TimelineLoader.prototype.loadTimelineObject = function () {
+	        return this.$http.get('/data/timeline.json').then(function (responseData) {
+	            return responseData.data;
+	        });
+	    };
+	    return TimelineLoader;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = TimelineLoader;
+
 
 /***/ }
 /******/ ]);

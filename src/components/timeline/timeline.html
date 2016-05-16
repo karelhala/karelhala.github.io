@@ -1,7 +1,10 @@
-<div class="container">
+<div class="container" id="cv-timeline-container">
   <div class="row">
     <div class="timeline-centered">
-      <timeline-entry ng-repeat="entry in vm.entries" is-left="$odd"></timeline-entry>
+      <timeline-entry ng-repeat="entry in vm.entries"
+                      entry="entry"
+                      person-object="vm.personData"
+                      is-left="$odd"></timeline-entry>
       <article class="timeline-entry begin">
 
         <div class="timeline-end">

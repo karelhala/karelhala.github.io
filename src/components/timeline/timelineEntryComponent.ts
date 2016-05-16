@@ -8,6 +8,8 @@ export default class TimelineEntryComponent implements ng.IComponentOptions {
   public controller = TimeLineEntryController;
   public controllerAs: string = 'vm';
   public bindings: any = {
-    isLeft: '='
-  }
+    isLeft: '=',
+    personObject: '=',
+    entry: '='
+  };
 }

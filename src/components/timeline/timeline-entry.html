@@ -1,14 +1,15 @@
-<article class="timeline-entry" ng-class="{'left-aligned':vm.isLeft}">
+<article class="timeline-entry" ng-class="vm.getLeftAligned()">
 
   <div class="timeline-entry-inner">
-    <time class="timeline-time" datetime="2014-01-10T03:45"><span>03:45 AM</span> <span>Today</span></time>
-    <div class="timeline-icon bg-info">
-      <md-icon>device_hub</md-icon>
+    <time class="timeline-time" datetime="{{vm.entry.timeObject.format('YYYY-MM-DD')}}"><span>{{vm.entry.timeObject.format('DD.MM.YYYY')}}</span>
+      <span class="cv-time">{{vm.entry.getTime()}}</span></time>
+    <div class="timeline-icon {{vm.entry['color-class']}}">
+      <md-icon>{{vm.entry.icon}}</md-icon>
     </div>
 
     <div class="timeline-label">
-      <h2><a href="#">Art Ramadani</a> <span>posted a status update</span></h2>
-      <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
+      <h2>{{vm.personObject.name}} {{vm.personObject.surName}} <span> {{vm.entry.title}}</span></h2>
+      <p>{{vm.entry.text}}</p>
     </div>
   </div>
 

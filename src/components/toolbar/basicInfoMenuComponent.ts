@@ -9,5 +9,5 @@ export default class BasicMenuComponent implements ng.IComponentOptions {
   public controllerAs: string = 'vm';
   public bindings: any = {
     personObject: '='
-  }
+  };
 }

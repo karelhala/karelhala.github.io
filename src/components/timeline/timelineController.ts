@@ -2,8 +2,21 @@
 
 export default class TimelineController {
   public entries: any[];
+  public personData: any;
+  private container: any;
 
-  constructor() {
-    this.entries = [{a: 'asd'}, {b: 'sss'}];
+  constructor(private timelineLoader: any, private basicInformationLoader: any) {
+    let person = this.basicInformationLoader.getPersonObject();
+    if (person.hasOwnProperty('$$state')) {
+      person.then((personData) => {
+        this.personData = personData;
+      });
+    }
+    let timeline = this.timelineLoader.getTimelineData();
+    if (timeline.hasOwnProperty('$$state')) {
+      timeline.then((timelineData) => {
+        this.entries = timelineData;
+      });
+    }
   }
 }

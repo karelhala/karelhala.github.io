@@ -8,5 +8,5 @@ export default class TimelineComponent implements ng.IComponentOptions {
   public controller = TimelineController;
   public controllerAs: string = 'vm';
   public bindings: any = {
-  }
+  };
 }

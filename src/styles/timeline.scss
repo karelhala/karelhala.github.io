@@ -1,6 +1,6 @@
 /* Custom changes */
 .timeline-end {
-  margin-left: -12px;
+  margin-left: -13px;
   top: -5px;
 
   .arrow-down {
@@ -12,6 +12,31 @@
     border-top: 10px solid #737881;
     text-align: center;
 
+  }
+}
+
+/* Bounce animation from: https://codyhouse.co/gem/vertical-timeline/ */
+.timeline-centered .timeline-entry.is-hidden {
+  visibility: hidden;
+}
+.timeline-centered .timeline-entry.bounce-in {
+  visibility: visible;
+  animation: cd-bounce-1 0.6s;
+}
+
+@keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -57,6 +82,10 @@
   float: right;
   margin-bottom: 70px;
   clear: both;
+
+  .cv-time {
+    width: 110px;
+  }
 }
 
 .timeline-centered .timeline-entry:before, .timeline-centered .timeline-entry:after {
@@ -92,7 +121,7 @@
 
 .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner .timeline-time {
   left: auto;
-  right: -100px;
+  right: -140px;
   text-align: left;
 }
 
@@ -143,7 +172,7 @@
 
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-time {
   position: absolute;
-  left: -100px;
+  left: -140px;
   text-align: right;
   padding: 10px;
   -webkit-box-sizing: border-box;

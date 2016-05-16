@@ -12,7 +12,7 @@ export default class BasicInformationLoader {
     if (this.personObject.hasOwnProperty('name')) {
       return this.personObject;
     } else {
-      return this.loadPersonPObject().then((personData) => {
+      return this.loadPersonObject().then((personData) => {
         this.fillObject(personData);
         this.personObject = personData;
         return this.personObject;
@@ -28,7 +28,7 @@ export default class BasicInformationLoader {
     };
   }
 
-  private loadPersonPObject(): ng.IPromise<any> {
+  private loadPersonObject(): ng.IPromise<any> {
     return this.$http.get('/data/basic_info.json').then((responseData) => {
       return responseData.data;
     });

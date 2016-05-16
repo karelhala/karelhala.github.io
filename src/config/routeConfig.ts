@@ -2,7 +2,7 @@
 
 export default (module: ng.IModule) => {
   module
-  .config(($stateProvider) => {
+  .config(($stateProvider, $locationProvider, $urlRouterProvider) => {
     $stateProvider.state('home', {
       views: {
         toolbar: {
@@ -13,6 +13,11 @@ export default (module: ng.IModule) => {
           template: require<string>('../views/home_content.html')
         }
       }
+    });
+    $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode({
+      enabled: false,
+      requireBase: false
     });
   })
     .run(($state) => {

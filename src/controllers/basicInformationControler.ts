@@ -9,6 +9,5 @@ export default class BasicInformationController {
         this.personData = personData;
       });
     }
-    console.log(this);
   }
 }
