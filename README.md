@@ -4,4 +4,4 @@
 
 #### Smooth scroll achieved with: https://github.com/oblador/angular-scroll
 
-#### Fork me on github ribbon from: https://github.com/blog/273-github-ribbons
+#### Fork me on github ribbon from: https://ar.al/scribbles/fork-me-on-github-retina-ribbons/
