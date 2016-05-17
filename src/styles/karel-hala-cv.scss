@@ -36,8 +36,33 @@
   &.cv-timeline-trend {
     padding-top: 20px;
   }
+
+  &.cv-contacts {
+    text-align: center;
+
+    .cv-contact {
+      height: 60px;
+      width: 60px;
+      cursor: pointer;
+
+      &.smaller {
+        height: 40px;
+        width: 40px;
+      }
+
+      &.split {
+        margin-left: 5px;
+      }
+    }
+  }
+
   h3 {
     text-align: center;
   }
 }
+
+.cv-content:last-of-type {
+  margin-bottom: 15px;
+}
+
 

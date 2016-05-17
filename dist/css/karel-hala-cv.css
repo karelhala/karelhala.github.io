@@ -26,8 +26,22 @@
   margin-top: 15px; }
   .cv-content.cv-timeline-trend {
     padding-top: 20px; }
+  .cv-content.cv-contacts {
+    text-align: center; }
+    .cv-content.cv-contacts .cv-contact {
+      height: 60px;
+      width: 60px;
+      cursor: pointer; }
+      .cv-content.cv-contacts .cv-contact.smaller {
+        height: 40px;
+        width: 40px; }
+      .cv-content.cv-contacts .cv-contact.split {
+        margin-left: 5px; }
   .cv-content h3 {
     text-align: center; }
+
+.cv-content:last-of-type {
+  margin-bottom: 15px; }
 /* Custom changes */
 .timeline-end {
   margin-left: -13px;
