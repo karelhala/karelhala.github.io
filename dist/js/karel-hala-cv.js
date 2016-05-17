@@ -460,10 +460,11 @@
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
 	var TimelineController = (function () {
-	    function TimelineController(timelineLoader, basicInformationLoader) {
+	    function TimelineController(timelineLoader, basicInformationLoader, $window) {
 	        var _this = this;
 	        this.timelineLoader = timelineLoader;
 	        this.basicInformationLoader = basicInformationLoader;
+	        this.$window = $window;
 	        var person = this.basicInformationLoader.getPersonObject();
 	        if (person.hasOwnProperty('$$state')) {
 	            person.then(function (personData) {
@@ -477,6 +478,11 @@
 	            });
 	        }
 	    }
+	    TimelineController.prototype.getClass = function () {
+	        return {
+	            'all-right': this.$window.innerWidth < 960
+	        };
+	    };
 	    return TimelineController;
 	}());
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -487,7 +493,7 @@
 /* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container\" id=\"cv-timeline-container\">\n  <div class=\"row\">\n    <div class=\"timeline-centered\">\n      <timeline-entry ng-repeat=\"entry in vm.entries\"\n                      entry=\"entry\"\n                      person-object=\"vm.personData\"\n                      is-left=\"$odd\"></timeline-entry>\n      <article class=\"timeline-entry begin\">\n\n        <div class=\"timeline-end\">\n\n          <div class=\"arrow-down\"></div>\n\n        </div>\n\n      </article>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"container\" id=\"cv-timeline-container\">\n  <div class=\"row\">\n    <div class=\"timeline-centered\" ng-class=\"vm.getClass()\">\n      <timeline-entry ng-repeat=\"entry in vm.entries\"\n                      entry=\"entry\"\n                      person-object=\"vm.personData\"\n                      is-left=\"$odd\"></timeline-entry>\n      <article class=\"timeline-entry begin\">\n\n        <div class=\"timeline-end\">\n\n          <div class=\"arrow-down\"></div>\n\n        </div>\n\n      </article>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 27 */
@@ -530,7 +536,7 @@
 	    TimelineEntryController.$inject = ["$window"];
 	    TimelineEntryController.prototype.getCurrentClasses = function () {
 	        return {
-	            'left-aligned': this.isLeft
+	            'left-aligned': this.isLeft && this.$window.innerWidth > 960
 	        };
 	    };
 	    TimelineEntryController.prototype.bounce = function () {

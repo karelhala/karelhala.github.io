@@ -13,7 +13,7 @@ export default class TimelineEntryController {
 
   public getCurrentClasses() {
     return {
-      'left-aligned': this.isLeft
+      'left-aligned': this.isLeft && this.$window.innerWidth > 960
     };
   }
 

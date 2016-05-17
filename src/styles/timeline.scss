@@ -15,10 +15,13 @@
   }
 }
 
-/* Bounce animation from: https://codyhouse.co/gem/vertical-timeline/ */
-.timeline-centered .timeline-entry .is-hidden {
-  visibility: hidden;
+/* Bounce animation from: https://codyhouse.co/gem/vertical-timeline/ and from: http://www.greywyvern.com/?post=337*/
+.timeline-centered .timeline-entry .is-hidden{
+  visibility:hidden;
+  opacity:0;
+  transition:visibility 0s linear 0.5s,opacity 0.5s linear;
 }
+
 .timeline-centered .timeline-entry .bounce-in {
   visibility: visible;
   animation: cd-bounce-1 0.6s;
@@ -27,16 +30,14 @@
 @keyframes cd-bounce-1 {
   0% {
     opacity: 0;
-    transform: scale(0.5);
   }
 
   60% {
     opacity: 1;
-    transform: scale(1.2);
   }
 
   100% {
-    transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -304,4 +305,31 @@
   opacity: .6;
   -ms-filter: alpha(opacity=60);
   filter: alpha(opacity=60);
+}
+
+
+/* All right timeline, mainly for mobile devices */
+.timeline-centered.all-right {
+  margin-top: 60px;
+
+  &:before {
+    left: 29px;
+  }
+  article.timeline-entry {
+    width: 100%;
+    float: none;
+
+    .timeline-entry-inner {
+      margin-left: 9px;
+
+      .timeline-time {
+        left: 65px;
+        top: -65px;
+      }
+    }
+  }
+
+  .timeline-end {
+    margin-left: 17px;
+  }
 }

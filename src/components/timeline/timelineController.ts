@@ -5,7 +5,9 @@ export default class TimelineController {
   public personData: any;
   private container: any;
 
-  constructor(private timelineLoader: any, private basicInformationLoader: any) {
+  constructor(private timelineLoader: any,
+              private basicInformationLoader: any,
+              private $window: any) {
     let person = this.basicInformationLoader.getPersonObject();
     if (person.hasOwnProperty('$$state')) {
       person.then((personData) => {
@@ -18,5 +20,11 @@ export default class TimelineController {
         this.entries = timelineData;
       });
     }
+  }
+
+  public getClass() {
+    return {
+      'all-right': this.$window.innerWidth < 960
+    };
   }
 }

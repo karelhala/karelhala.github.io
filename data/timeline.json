@@ -7,15 +7,8 @@
     "time": 664502400000
   },
   {
-    "title": "went to elementary School",
-    "color-class": "bg-info",
-    "icon": "local_library",
-    "text": "Local elementary school in my home village gave me great founding for future development.",
-    "time": 904608000000
-  },
-  {
     "title": "went to high School",
-    "color-class": "bg-success",
+    "color-class": "bg-info",
     "icon": "airport_shuttle",
     "text": "My High school with focus on computer networks was great place where I realized that I like programming with focus on UI.",
     "time": 1157068800000
@@ -50,7 +43,7 @@
   },
   {
     "title": "current employer",
-    "color-class": "bg-warning",
+    "color-class": "bg-success",
     "icon": "assistant_photo",
     "text": "My current employer is RedHat where I finally can focus on what I like, working on UI with new technologies. I am working mostly with angular I worked on hawkular.org and now working on manageIq tool for managing clouds in various environments.",
     "time": 1446336000000
