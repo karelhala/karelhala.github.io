@@ -4,7 +4,7 @@ This repository was made entirely for testing out angular and material design, C
 You can reuse any part of this repository, just add some reference to this repo, thank you. If you fork this repository and just edit data, please do not remove fork me on github ribbon and don't change it to your repository.
 
 ### Documentation
-If you are looking for how to use components from this repository and or how they were implemented go to [wiki](https://github.com/karelhala/karelhala.github.io/wiki) of this project and navigate ond navigate to [Components](https://github.com/karelhala/karelhala.github.io/wiki/Components)
+If you are looking for how to use components from this repository and or how they were implemented go to [wiki](https://github.com/karelhala/karelhala.github.io/wiki) of this project and navigate to [Components](https://github.com/karelhala/karelhala.github.io/wiki/Components)
 
 #### TODO
 * Update this README
