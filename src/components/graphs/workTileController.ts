@@ -2,7 +2,9 @@
 
 export default class WorkTileController {
   public graphData: any;
-  constructor() {
+  
+  /* @ngInject */
+  constructor(private jobsLoader: any) {
     this.graphData = {
       colors: {
         data1: '#cc2424',
