@@ -46,7 +46,7 @@
 
 	__webpack_require__(1);
 	__webpack_require__(5);
-	module.exports = __webpack_require__(30);
+	module.exports = __webpack_require__(35);
 
 
 /***/ },
@@ -66,8 +66,8 @@
 	///<reference path="tsd.d.ts"/>
 	var routeConfig_1 = __webpack_require__(6);
 	var loader_1 = __webpack_require__(9);
-	var loader_2 = __webpack_require__(13);
-	var loader_3 = __webpack_require__(15);
+	var loader_2 = __webpack_require__(14);
+	var loader_3 = __webpack_require__(16);
 	var app = angular.module('karelHalaCV', ['ngMaterial', 'ngMdIcons', 'ui.router', 'ngAnimate', 'duScroll']);
 	routeConfig_1.default(app);
 	loader_1.default(app);
@@ -118,7 +118,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content cv-timeline-trend\" id=\"timeline-trend\" layout=\"column\">\n    <div></div>\n    <timeline></timeline>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"work-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <md-card flex-gt-sm=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with  image</span>\n            <span class=\"md-subhead\">Extra Large</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-content layout=\"row\" layout-align=\"space-between\">\n          <div class=\"md-media-xl card-media\" style=\"width: 100%;\">\n            <img src=\"https://i.ytimg.com/vi/jzdEi0YHEKM/maxresdefault.jpg\" style=\"width: 100%; height:100%\">\n          </div>\n          <md-card-actions layout=\"column\">\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>menu</md-icon>\n            </md-button>\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>mode_comment</md-icon>\n            </md-button>\n          </md-card-actions>\n        </md-card-content>\n      </md-card>\n      <md-card flex-gt-sm=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with  image</span>\n            <span class=\"md-subhead\">Extra Large</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-content layout=\"row\" layout-align=\"space-between\">\n          <div class=\"md-media-xl card-media\" style=\"width: 100%;\">\n            <img src=\"https://i.ytimg.com/vi/jzdEi0YHEKM/maxresdefault.jpg\" style=\"width: 100%; height:100%\">\n          </div>\n          <md-card-actions layout=\"column\">\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>menu</md-icon>\n            </md-button>\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>mode_comment</md-icon>\n            </md-button>\n          </md-card-actions>\n        </md-card-content>\n      </md-card>\n    </div>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content cv-contacts\" id=\"contacts\">\n    <contacts></contacts>\n  </div>\n</div>\n"
+	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content cv-timeline-trend\" id=\"timeline-trend\" layout=\"column\">\n    <div></div>\n    <timeline></timeline>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"work-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <md-card flex-gt-sm=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with  image</span>\n            <span class=\"md-subhead\">Extra Large</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-content layout=\"row\" layout-align=\"space-between\">\n          <div class=\"md-media-xl card-media\" style=\"width: 100%;\">\n            <div id=\"chart-1\"></div>\n          </div>\n          <md-card-actions layout=\"column\">\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>menu</md-icon>\n            </md-button>\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>mode_comment</md-icon>\n            </md-button>\n          </md-card-actions>\n        </md-card-content>\n      </md-card>\n      <md-card flex-gt-sm=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with  image</span>\n            <span class=\"md-subhead\">Extra Large</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-content layout=\"row\" layout-align=\"space-between\">\n          <div class=\"md-media-xl card-media\" style=\"width: 100%;\">\n            <div id=\"chart-2\"></div>\n          </div>\n          <md-card-actions layout=\"column\">\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>menu</md-icon>\n            </md-button>\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>mode_comment</md-icon>\n            </md-button>\n          </md-card-actions>\n        </md-card-content>\n      </md-card>\n    </div>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content cv-contacts\" id=\"contacts\">\n    <contacts></contacts>\n  </div>\n</div>\n"
 
 /***/ },
 /* 9 */
@@ -128,7 +128,7 @@
 	///<reference path="../tsd.d.ts"/>
 	var basicInformationLoader_1 = __webpack_require__(10);
 	var timelineLoader_1 = __webpack_require__(12);
-	var contactLoader_1 = __webpack_require__(36);
+	var contactLoader_1 = __webpack_require__(13);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('basicInformationLoader', basicInformationLoader_1.default);
@@ -251,11 +251,43 @@
 
 /***/ },
 /* 13 */
+/***/ function(module, exports) {
+
+	///<reference path="../tsd.d.ts"/>
+	"use strict";
+	var ContactLoader = (function () {
+	    /* @ngInject */
+	    function ContactLoader($http) {
+	        this.$http = $http;
+	        this.contactData = [];
+	    }
+	    ContactLoader.$inject = ["$http"];
+	    ContactLoader.prototype.getContactData = function () {
+	        if (this.contactData.length > 0) {
+	            return this.contactData;
+	        }
+	        else {
+	            return this.loadContactData();
+	        }
+	    };
+	    ContactLoader.prototype.loadContactData = function () {
+	        return this.$http.get('/data/contact.json').then(function (responseData) {
+	            return responseData.data;
+	        });
+	    };
+	    return ContactLoader;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = ContactLoader;
+
+
+/***/ },
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
-	var basicInformationControler_1 = __webpack_require__(14);
+	var basicInformationControler_1 = __webpack_require__(15);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.controller('basicInformationController', basicInformationControler_1.default);
@@ -263,7 +295,7 @@
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -288,14 +320,14 @@
 
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
-	var loader_1 = __webpack_require__(16);
-	var loader_2 = __webpack_require__(23);
-	var loader_3 = __webpack_require__(32);
+	var loader_1 = __webpack_require__(17);
+	var loader_2 = __webpack_require__(24);
+	var loader_3 = __webpack_require__(31);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    loader_1.default(module);
@@ -305,13 +337,13 @@
 
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="../../tsd.d.ts"/>
-	var basicInfoMenuComponent_1 = __webpack_require__(17);
-	var speedDialComponent_1 = __webpack_require__(20);
+	var basicInfoMenuComponent_1 = __webpack_require__(18);
+	var speedDialComponent_1 = __webpack_require__(21);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('basicInfoMenu', new basicInfoMenuComponent_1.default);
@@ -320,16 +352,16 @@
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var basicMenuController_1 = __webpack_require__(18);
+	var basicMenuController_1 = __webpack_require__(19);
 	var BasicMenuComponent = (function () {
 	    function BasicMenuComponent() {
 	        this.replace = true;
-	        this.template = __webpack_require__(19);
+	        this.template = __webpack_require__(20);
 	        this.controller = basicMenuController_1.default;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -343,7 +375,7 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
@@ -361,22 +393,22 @@
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = "<md-menu md-position-mode=\"target-right target\">\n  <md-button class=\"md-fab move-down\" aria-label=\"Show basic details\" ng-click=\"vm.openMenu($mdOpenMenu, $event)\">\n    <md-icon>account_circle</md-icon>\n  </md-button>\n  <md-menu-content width=\"6\">\n    <md-menu-item>\n      <span class=\"cv-bold\"></span>\n      <span><img src=\"{{vm.personObject.picture}}\"></span>\n    </md-menu-item>\n    <md-menu-item>\n      <span flex></span>\n    </md-menu-item>\n    <md-menu-item>\n      <span class=\"cv-bold\">Name and Surname</span>\n      <span>{{vm.personObject.name}} {{vm.personObject.surName}}</span>\n    </md-menu-item>\n    <md-menu-divider></md-menu-divider>\n    <md-menu-item>\n      <span class=\"cv-bold\">Birth date</span>\n      <span>{{vm.personObject.dateObject.format('DD.MM.YYYY')}}</span>\n    </md-menu-item>\n    <md-menu-item>\n      <span class=\"cv-bold\">Age</span>\n      <span>{{vm.personObject.getAge()}}</span>\n    </md-menu-item>\n  </md-menu-content>\n</md-menu>\n"
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var speedDialController_1 = __webpack_require__(21);
+	var speedDialController_1 = __webpack_require__(22);
 	var SpeedDialComponent = (function () {
 	    function SpeedDialComponent() {
 	        this.replace = true;
-	        this.template = __webpack_require__(22);
+	        this.template = __webpack_require__(23);
 	        this.controller = speedDialController_1.default;
 	        this.controllerAs = 'vm';
 	        this.bindings = {};
@@ -388,7 +420,7 @@
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
@@ -416,19 +448,19 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = "<md-fab-speed-dial md-open=\"vm.isOpen\" md-direction=\"{{vm.direction}}\"\n                   ng-class=\"vm.selectedMode\" class=\"cv-move-speed-dial\">\n  <md-fab-trigger>\n    <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n      <ng-md-icon icon=\"{{vm.isOpen ? 'format_align_left' : 'menu'}}\" ng-attr-style=\"fill: {{fill}}\" options='{\"rotation\": \"none\"}'></ng-md-icon>\n    </md-button>\n  </md-fab-trigger>\n  <md-fab-actions>\n    <md-button aria-label=\"Twitter\" class=\"md-fab md-raised md-mini\" ng-click=\"vm.scrollToElement('timeline-trend')\">\n      <md-tooltip md-direction=\"right\"\n                  md-autohide=\"false\">Timeline</md-tooltip>\n      <md-icon>device_hub</md-icon>\n    </md-button>\n    <md-button aria-label=\"Twitter\" class=\"md-fab md-raised md-mini\" ng-click=\"vm.scrollToElement('work-graphs')\">\n      <md-tooltip md-direction=\"right\"\n                  md-autohide=\"false\">Graphs</md-tooltip>\n      <md-icon>equalizer</md-icon>\n    </md-button>\n    <md-button aria-label=\"Contacts\" class=\"md-fab md-raised md-mini\" ng-click=\"vm.scrollToElement('contacts')\">\n      <md-tooltip md-direction=\"right\"\n                  md-autohide=\"false\">Contacts</md-tooltip>\n      <md-icon>contacts</md-icon>\n    </md-button>\n  </md-fab-actions>\n</md-fab-speed-dial>\n"
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var timelineComponent_1 = __webpack_require__(24);
-	var timelineEntryComponent_1 = __webpack_require__(27);
+	var timelineComponent_1 = __webpack_require__(25);
+	var timelineEntryComponent_1 = __webpack_require__(28);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('timeline', new timelineComponent_1.default);
@@ -437,16 +469,16 @@
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var timelineController_1 = __webpack_require__(25);
+	var timelineController_1 = __webpack_require__(26);
 	var TimelineComponent = (function () {
 	    function TimelineComponent() {
 	        this.replace = true;
-	        this.template = __webpack_require__(26);
+	        this.template = __webpack_require__(27);
 	        this.controller = timelineController_1.default;
 	        this.controllerAs = 'vm';
 	        this.bindings = {};
@@ -458,7 +490,7 @@
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
@@ -494,22 +526,22 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container\" id=\"cv-timeline-container\">\n  <div class=\"row\">\n    <div class=\"timeline-centered\" ng-class=\"vm.getClass()\">\n      <timeline-entry ng-repeat=\"entry in vm.entries\"\n                      entry=\"entry\"\n                      person-object=\"vm.personData\"\n                      is-left=\"$odd\"></timeline-entry>\n      <article class=\"timeline-entry begin\">\n\n        <div class=\"timeline-end\">\n\n          <div class=\"arrow-down\"></div>\n\n        </div>\n\n      </article>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var timelineEntryController_1 = __webpack_require__(28);
+	var timelineEntryController_1 = __webpack_require__(29);
 	var TimelineEntryComponent = (function () {
 	    function TimelineEntryComponent() {
 	        this.replace = true;
-	        this.template = __webpack_require__(29);
+	        this.template = __webpack_require__(30);
 	        this.controller = timelineEntryController_1.default;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -525,7 +557,7 @@
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
@@ -556,25 +588,18 @@
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = "<article class=\"timeline-entry\" ng-class=\"vm.getCurrentClasses()\">\n\n  <div class=\"timeline-entry-inner\">\n    <time class=\"timeline-time\" datetime=\"{{vm.entry.timeObject.format('YYYY-MM-DD')}}\"><span>{{vm.entry.timeObject.format('DD.MM.YYYY')}}</span>\n      <span class=\"cv-time\">{{vm.entry.getTime()}}</span></time>\n    <div class=\"timeline-icon {{vm.entry['color-class']}}\" ng-click=\"vm.clicked = !vm.clicked\">\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>{{vm.entry.icon}}</md-icon>\n      </md-button>\n    </div>\n\n    <div class=\"timeline-label\" ng-class=\"vm.bounce()\">\n      <h2>{{vm.personObject.name}} {{vm.personObject.surName}} <span> {{vm.entry.title}}</span></h2>\n      <p>{{vm.entry.text}}</p>\n    </div>\n  </div>\n\n</article>\n"
 
 /***/ },
-/* 30 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 31 */,
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="../../tsd.d.ts"/>
-	var contactsComponent_1 = __webpack_require__(33);
+	var contactsComponent_1 = __webpack_require__(32);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('contacts', new contactsComponent_1.default);
@@ -582,16 +607,16 @@
 
 
 /***/ },
-/* 33 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var contactsController_1 = __webpack_require__(34);
+	var contactsController_1 = __webpack_require__(33);
 	var ContactsComponent = (function () {
 	    function ContactsComponent() {
 	        this.replace = true;
-	        this.template = __webpack_require__(35);
+	        this.template = __webpack_require__(34);
 	        this.controller = contactsController_1.default;
 	        this.controllerAs = 'vm';
 	        this.bindings = {};
@@ -603,7 +628,7 @@
 
 
 /***/ },
-/* 34 */
+/* 33 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
@@ -634,42 +659,16 @@
 
 
 /***/ },
-/* 35 */
+/* 34 */
 /***/ function(module, exports) {
 
 	module.exports = "<md-icon ng-repeat=\"contact in vm.contactsData\"\n         md-svg-src=\"{{contact.iconSrc}}\"\n         aria-label=\"{{contact.title}}\"\n         ng-click=\"vm.contactClicked(contact)\"\n         class=\"cv-contact {{contact.class}}\"\n></md-icon>\n"
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports) {
 
-	///<reference path="../tsd.d.ts"/>
-	"use strict";
-	var ContactLoader = (function () {
-	    /* @ngInject */
-	    function ContactLoader($http) {
-	        this.$http = $http;
-	        this.contactData = [];
-	    }
-	    ContactLoader.$inject = ["$http"];
-	    ContactLoader.prototype.getContactData = function () {
-	        if (this.contactData.length > 0) {
-	            return this.contactData;
-	        }
-	        else {
-	            return this.loadContactData();
-	        }
-	    };
-	    ContactLoader.prototype.loadContactData = function () {
-	        return this.$http.get('/data/contact.json').then(function (responseData) {
-	            return responseData.data;
-	        });
-	    };
-	    return ContactLoader;
-	}());
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = ContactLoader;
-
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
