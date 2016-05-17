@@ -46,7 +46,7 @@
 
 	__webpack_require__(1);
 	__webpack_require__(5);
-	module.exports = __webpack_require__(35);
+	module.exports = __webpack_require__(41);
 
 
 /***/ },
@@ -118,7 +118,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content cv-timeline-trend\" id=\"timeline-trend\" layout=\"column\">\n    <div></div>\n    <timeline></timeline>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"work-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <md-card flex-gt-sm=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with  image</span>\n            <span class=\"md-subhead\">Extra Large</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-content layout=\"row\" layout-align=\"space-between\">\n          <div class=\"md-media-xl card-media\" style=\"width: 100%;\">\n            <div id=\"chart-1\"></div>\n          </div>\n          <md-card-actions layout=\"column\">\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>menu</md-icon>\n            </md-button>\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>mode_comment</md-icon>\n            </md-button>\n          </md-card-actions>\n        </md-card-content>\n      </md-card>\n      <md-card flex-gt-sm=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with  image</span>\n            <span class=\"md-subhead\">Extra Large</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-content layout=\"row\" layout-align=\"space-between\">\n          <div class=\"md-media-xl card-media\" style=\"width: 100%;\">\n            <div id=\"chart-2\"></div>\n          </div>\n          <md-card-actions layout=\"column\">\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>menu</md-icon>\n            </md-button>\n            <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n              <md-icon>mode_comment</md-icon>\n            </md-button>\n          </md-card-actions>\n        </md-card-content>\n      </md-card>\n    </div>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content cv-contacts\" id=\"contacts\">\n    <contacts></contacts>\n  </div>\n</div>\n"
+	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content cv-timeline-trend\" id=\"timeline-trend\" layout=\"column\">\n    <div></div>\n    <timeline></timeline>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"work-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <work-tile flex-gt-sm=\"50\"></work-tile>\n      <work-tile flex-gt-sm=\"50\"></work-tile>\n    </div>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content cv-contacts\" id=\"contacts\">\n    <contacts></contacts>\n  </div>\n</div>\n"
 
 /***/ },
 /* 9 */
@@ -328,11 +328,13 @@
 	var loader_1 = __webpack_require__(17);
 	var loader_2 = __webpack_require__(24);
 	var loader_3 = __webpack_require__(31);
+	var loader_4 = __webpack_require__(35);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    loader_1.default(module);
 	    loader_2.default(module);
 	    loader_3.default(module);
+	    loader_4.default(module);
 	};
 
 
@@ -666,6 +668,136 @@
 
 /***/ },
 /* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	///<reference path="../../tsd.d.ts"/>
+	var basicGraphDirective_1 = __webpack_require__(36);
+	var workTileComponent_1 = __webpack_require__(38);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.directive('basicGraph', basicGraphDirective_1.default.Factory());
+	    module.component('workTile', new workTileComponent_1.default);
+	};
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	///<reference path="../../tsd.d.ts"/>
+	"use strict";
+	var basicGraphController_1 = __webpack_require__(37);
+	var BasicGraphDirective = (function () {
+	    function BasicGraphDirective() {
+	        this.replace = true;
+	        this.template = "<div></div>";
+	        this.controller = basicGraphController_1.default;
+	        this.controllerAs = 'vm';
+	        this.scope = {};
+	        this.bindToController = {
+	            type: '=',
+	            data: '=',
+	            colors: '='
+	        };
+	        this.link = function (scope, element, attrs, controller) {
+	            console.log(controller);
+	            setTimeout(function () {
+	                var chart1 = c3.generate({
+	                    bindto: element[0],
+	                    data: {
+	                        colors: controller.colors,
+	                        type: controller.type,
+	                        columns: controller.data
+	                    }
+	                });
+	            });
+	            //console.log(element);
+	        };
+	    }
+	    BasicGraphDirective.Factory = function () {
+	        var directive = function () { return new BasicGraphDirective(); };
+	        directive.$inject = [];
+	        return directive;
+	    };
+	    return BasicGraphDirective;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = BasicGraphDirective;
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports) {
+
+	///<reference path="../../tsd.d.ts"/>
+	"use strict";
+	var BasicGraphController = (function () {
+	    function BasicGraphController() {
+	    }
+	    return BasicGraphController;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = BasicGraphController;
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	///<reference path="../../tsd.d.ts"/>
+	"use strict";
+	var workTileController_1 = __webpack_require__(39);
+	var WorkTileComponent = (function () {
+	    function WorkTileComponent() {
+	        this.replace = true;
+	        this.template = __webpack_require__(40);
+	        this.controller = workTileController_1.default;
+	        this.controllerAs = 'vm';
+	        this.bindings = {};
+	    }
+	    return WorkTileComponent;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = WorkTileComponent;
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	///<reference path="../../tsd.d.ts"/>
+	"use strict";
+	var WorkTileController = (function () {
+	    function WorkTileController() {
+	        this.graphData = {
+	            colors: {
+	                data1: '#cc2424',
+	                data2: '#fad839',
+	                data3: '#303641',
+	            },
+	            type: 'donut',
+	            data: [
+	                ['data1', 40],
+	                ['data2', 40],
+	                ['data3', 20],
+	            ]
+	        };
+	    }
+	    return WorkTileController;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = WorkTileController;
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	module.exports = "<md-card>\n  <md-card-title>\n    <md-card-title-text>\n      <span class=\"md-headline\">Card with  image</span>\n      <span class=\"md-subhead\">Extra Large</span>\n    </md-card-title-text>\n  </md-card-title>\n  <md-card-content layout=\"row\" layout-align=\"space-between\">\n    <div class=\"md-media-xl card-media cv-graph\">\n      <basic-graph type=\"vm.graphData.type\"\n                   data=\"vm.graphData.data\"\n                   colors=\"vm.graphData.colors\">\n      </basic-graph>\n    </div>\n    <md-card-actions layout=\"column\">\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>menu</md-icon>\n      </md-button>\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>mode_comment</md-icon>\n      </md-button>\n    </md-card-actions>\n  </md-card-content>\n</md-card>\n"
+
+/***/ },
+/* 41 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

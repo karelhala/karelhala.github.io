@@ -19,12 +19,12 @@
 .timeline-centered .timeline-entry .is-hidden{
   visibility:hidden;
   opacity:0;
-  transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+  transition:visibility 0s linear 0.5s,opacity 0.7s linear;
 }
 
 .timeline-centered .timeline-entry .bounce-in {
   visibility: visible;
-  animation: cd-bounce-1 0.6s;
+  animation: cd-bounce-1 0.7s;
 }
 
 @keyframes cd-bounce-1 {

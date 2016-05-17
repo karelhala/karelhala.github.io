@@ -1,0 +1,24 @@
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Card with  image</span>
+      <span class="md-subhead">Extra Large</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content layout="row" layout-align="space-between">
+    <div class="md-media-xl card-media cv-graph">
+      <basic-graph type="vm.graphData.type"
+                   data="vm.graphData.data"
+                   colors="vm.graphData.colors">
+      </basic-graph>
+    </div>
+    <md-card-actions layout="column">
+      <md-button class="md-icon-button" aria-label="Settings">
+        <md-icon>menu</md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Settings">
+        <md-icon>mode_comment</md-icon>
+      </md-button>
+    </md-card-actions>
+  </md-card-content>
+</md-card>
