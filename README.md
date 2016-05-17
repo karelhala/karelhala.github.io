@@ -3,30 +3,8 @@ This repository was made entirely for testing out angular and material design, C
 
 You can reuse any part of this repository, just add some reference to this repo, thank you. If you fork this repository and just edit data, please do not remove fork me on github ribbon and don't change it to your repository.
 
-### Components and their usage
-You can take these components and use them in your repository, but please give me some credit and [use link to this repository](https://github.com/karelhala/karelhala.github.io)
-#### Contacts
-Source code located [here](https://github.com/karelhala/karelhala.github.io/tree/master/src/components/contacts)
-#### Basic graph
-Source code located [here](https://github.com/karelhala/karelhala.github.io/tree/master/src/components/graphs)
-#### Work Tile
-Source code located [here](https://github.com/karelhala/karelhala.github.io/tree/master/src/components/graphs)
-
-This component also uses Basic graph
-#### School Tile
-Source code located [here](https://github.com/karelhala/karelhala.github.io/tree/master/src/components/graphs)
-
-This component also uses Basic graph
-#### Timeline
-Source code located [here](https://github.com/karelhala/karelhala.github.io/tree/master/src/components/timeline)
-
-This component also uses Timeline entry
-#### Timeline entry
-Source code located [here](https://github.com/karelhala/karelhala.github.io/tree/master/src/components/timeline)
-#### Basic info menu
-Source code located [here](https://github.com/karelhala/karelhala.github.io/tree/master/src/components/toolbar)
-#### Speed dial
-Source code located [here](https://github.com/karelhala/karelhala.github.io/tree/master/src/components/toolbar)
+### Documentation
+If you are looking for how to use components from this repository and or how they were implemented go to [wiki](https://github.com/karelhala/karelhala.github.io/wiki) of this project and navigate ond navigate to [Components](https://github.com/karelhala/karelhala.github.io/wiki/Components)
 
 #### TODO
 * Update this README
