@@ -1,24 +1,22 @@
 <md-card>
   <md-card-title>
     <md-card-title-text>
-      <span class="md-headline">Card with  image</span>
-      <span class="md-subhead">Extra Large</span>
+      <span class="md-headline">Months per each job</span>
     </md-card-title-text>
   </md-card-title>
   <md-card-content layout="row" layout-align="space-between">
-    <div class="md-media-xl card-media cv-graph">
-      <basic-graph type="vm.graphData.type"
-                   data="vm.graphData.data"
-                   colors="vm.graphData.colors">
+    <div class="card-media cv-graph">
+      <basic-graph type="vm.workData.graphData.type"
+                   data="vm.workData.graphData.data"
+                   colors="vm.workData.graphData.colors"
+                   names="vm.workData.graphData.names" id="work">
       </basic-graph>
     </div>
     <md-card-actions layout="column">
       <md-button class="md-icon-button" aria-label="Settings">
-        <md-icon>menu</md-icon>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="Settings">
         <md-icon>mode_comment</md-icon>
       </md-button>
+      <speed-dial items="vm.speedDialItems" direction="'down'" on-click="vm.onSpeedDialClick(item)"></speed-dial>
     </md-card-actions>
   </md-card-content>
 </md-card>

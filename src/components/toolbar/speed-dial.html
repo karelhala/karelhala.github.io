@@ -6,20 +6,13 @@
     </md-button>
   </md-fab-trigger>
   <md-fab-actions>
-    <md-button aria-label="Twitter" class="md-fab md-raised md-mini" ng-click="vm.scrollToElement('timeline-trend')">
-      <md-tooltip md-direction="right"
-                  md-autohide="false">Timeline</md-tooltip>
-      <md-icon>device_hub</md-icon>
-    </md-button>
-    <md-button aria-label="Twitter" class="md-fab md-raised md-mini" ng-click="vm.scrollToElement('work-graphs')">
-      <md-tooltip md-direction="right"
-                  md-autohide="false">Graphs</md-tooltip>
-      <md-icon>equalizer</md-icon>
-    </md-button>
-    <md-button aria-label="Contacts" class="md-fab md-raised md-mini" ng-click="vm.scrollToElement('contacts')">
-      <md-tooltip md-direction="right"
-                  md-autohide="false">Contacts</md-tooltip>
-      <md-icon>contacts</md-icon>
+    <md-button ng-repeat="item in vm.items"
+               aria-label="{{item.tooltip}}"
+               class="md-fab md-raised md-mini"
+               ng-click="vm.onClick({item: item})">
+      <md-tooltip md-direction="{{item.tooltipDirection}}"
+                  md-autohide="false">{{item.tooltip}}</md-tooltip>
+      <md-icon>{{item.icon}}</md-icon>
     </md-button>
   </md-fab-actions>
 </md-fab-speed-dial>

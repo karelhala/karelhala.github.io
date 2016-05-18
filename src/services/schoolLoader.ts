@@ -7,7 +7,6 @@ export default class SchoolLoader {
   /* @ngInject */
   constructor(private $http: ng.IHttpService) {
   }
-  
   public getJobsData(): any {
     if (this.schoolData.length > 0) {
       return this.schoolData;
@@ -18,7 +17,7 @@ export default class SchoolLoader {
       });
     }
   }
-  
+
   private loadSchoolsObject(): ng.IPromise<any> {
     return this.$http.get('/data/schools.json').then((responseData) => {
       return responseData.data;

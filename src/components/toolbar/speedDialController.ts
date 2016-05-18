@@ -3,14 +3,15 @@
 export default class SpeedDialController implements ng.IComponentOptions {
   public isOpen: boolean = false;
   public selectedMode: string = 'md-scale';
-  public direction: string = 'down';
-  public menuIcon: string = 'menu';
+  public items: any[];
+  public onClick: (args: {item: any}) => void;
   private container: any;
 
   private duration = 2000;
 
   /* @ngInject */
   constructor(private $window: any) {
+    console.log(this);
     this.container = angular.element(document.getElementById('content-container'));
   }
 

@@ -8,5 +8,8 @@ export default class SpeedDialComponent implements ng.IComponentOptions {
   public controller = SpeedDialController;
   public controllerAs: string = 'vm';
   public bindings: any = {
+    direction: '=',
+    items: '=',
+    onClick: '&'
   };
 }

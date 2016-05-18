@@ -1,6 +1,6 @@
 <div ng-controller="basicInformationController as basic">
   <div class="md-toolbar-tools">
-    <speed-dial></speed-dial>
+    <speed-dial items="basic.items" direction="basic.direction" on-click="basic.scrollToElement(item)"></speed-dial>
     <h2>
       <span>{{basic.personData.name}} {{basic.personData.surName}}</span>
     </h2>

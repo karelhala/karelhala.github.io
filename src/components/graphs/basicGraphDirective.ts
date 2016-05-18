@@ -11,20 +11,34 @@ export default class BasicGraphDirective implements ng.IDirective {
   public bindToController: any = {
     type: '=',
     data: '=',
-    colors: '='
+    colors: '=',
+    names: '='
   };
 
   public link = (scope, element, attrs, controller) => {
-    console.log(controller);
-    setTimeout(() => {
-      let chart1 = c3.generate({
-        bindto: element[0],
-        data: {
-            colors: controller.colors,
-            type : controller.type,
-            columns: controller.data
-        }
-      });
+    scope.$watch(() => {
+      return controller.data;
+    }, (newData) => {
+      if (controller.data) {
+        setTimeout(() => {
+          scope.chart = c3.generate({
+            bindto: element[0],
+            data: {
+              names: controller.names,
+              colors: controller.colors,
+              type : controller.type,
+              columns: controller.data
+            }
+          });
+        });
+      }
+    });
+    scope.$watch(() => {
+      return controller.type;
+    }, (newData) => {
+      if (scope.chart) {
+        scope.chart.transform(controller.type);
+      }
     });
     //console.log(element);
   };
