@@ -70,7 +70,7 @@
 
 .timeline-centered .timeline-entry .bounce-in {
   visibility: visible;
-  animation: cd-bounce-1 0.7s; }
+  animation: cd-bounce-1 2.5s; }
 
 @keyframes cd-bounce-1 {
   0% {

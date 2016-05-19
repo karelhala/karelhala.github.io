@@ -222,6 +222,7 @@
 	        }
 	    };
 	    TimelineLoader.prototype.fillObject = function (record) {
+	        record.isVisible = false;
 	        record.timeObject = moment(record.time);
 	        record.getTime = function () {
 	            var timeString = '';
@@ -560,7 +561,6 @@
 	        this.isOpen = false;
 	        this.selectedMode = 'md-scale';
 	        this.duration = 2000;
-	        console.log(this);
 	        this.container = angular.element(document.getElementById('content-container'));
 	    }
 	    SpeedDialController.$inject = ["$window"];
@@ -628,6 +628,7 @@
 	        this.timelineLoader = timelineLoader;
 	        this.basicInformationLoader = basicInformationLoader;
 	        this.$window = $window;
+	        this.container = angular.element(document.getElementById('content-container'));
 	        var person = this.basicInformationLoader.getPersonObject();
 	        if (person.hasOwnProperty('$$state')) {
 	            person.then(function (personData) {
@@ -638,9 +639,40 @@
 	        if (timeline.hasOwnProperty('$$state')) {
 	            timeline.then(function (timelineData) {
 	                _this.entries = timelineData;
+	                setTimeout(function () {
+	                    _this.showVisible();
+	                });
 	            });
 	        }
+	        else {
+	            setTimeout(function () {
+	                _this.showVisible();
+	            });
+	        }
+	        this.container.on('scroll', function () {
+	            _this.showVisible();
+	        });
 	    }
+	    Object.defineProperty(TimelineController, "offset", {
+	        get: function () { return 100; },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    ;
+	    TimelineController.prototype.showVisible = function () {
+	        var _this = this;
+	        var timelineEntries = document.getElementsByClassName('timeline-entry');
+	        angular.forEach(timelineEntries, function (oneEntry, key) {
+	            if ((Math.abs(oneEntry.getBoundingClientRect().top + TimelineController.offset)) < _this.$window.innerHeight) {
+	                if (_this.entries[key]) {
+	                    _this.entries[key].isVisible = true;
+	                    if (key + 1 === _this.entries.length) {
+	                        _this.container.off('scroll');
+	                    }
+	                }
+	            }
+	        });
+	    };
 	    TimelineController.prototype.getClass = function () {
 	        return {
 	            'all-right': this.$window.innerWidth < 960
@@ -693,8 +725,6 @@
 	    /* @ngInject */
 	    function TimelineEntryController($window) {
 	        this.$window = $window;
-	        this.clicked = false;
-	        console.log(this);
 	    }
 	    TimelineEntryController.$inject = ["$window"];
 	    TimelineEntryController.prototype.getCurrentClasses = function () {
@@ -704,8 +734,8 @@
 	    };
 	    TimelineEntryController.prototype.bounce = function () {
 	        return {
-	            'is-hidden': !this.clicked,
-	            'bounce-in': this.clicked
+	            'is-hidden': !this.entry.isVisible,
+	            'bounce-in': this.entry.isVisible
 	        };
 	    };
 	    return TimelineEntryController;
@@ -718,7 +748,7 @@
 /* 32 */
 /***/ function(module, exports) {
 
-	module.exports = "<article class=\"timeline-entry\" ng-class=\"vm.getCurrentClasses()\">\n\n  <div class=\"timeline-entry-inner\">\n    <time class=\"timeline-time\" datetime=\"{{vm.entry.timeObject.format('YYYY-MM-DD')}}\"><span>{{vm.entry.timeObject.format('DD.MM.YYYY')}}</span>\n      <span class=\"cv-time\">{{vm.entry.getTime()}}</span></time>\n    <div class=\"timeline-icon {{vm.entry['color-class']}}\" ng-click=\"vm.clicked = !vm.clicked\">\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>{{vm.entry.icon}}</md-icon>\n      </md-button>\n    </div>\n\n    <div class=\"timeline-label\" ng-class=\"vm.bounce()\">\n      <h2>{{vm.personObject.name}} {{vm.personObject.surName}} <span> {{vm.entry.title}}</span></h2>\n      <p>{{vm.entry.text}}</p>\n    </div>\n  </div>\n\n</article>\n"
+	module.exports = "<article class=\"timeline-entry\" ng-class=\"vm.getCurrentClasses()\">\n\n  <div class=\"timeline-entry-inner\">\n    <time class=\"timeline-time\" datetime=\"{{vm.entry.timeObject.format('YYYY-MM-DD')}}\"><span>{{vm.entry.timeObject.format('DD.MM.YYYY')}}</span>\n      <span class=\"cv-time\">{{vm.entry.getTime()}}</span></time>\n    <div class=\"timeline-icon {{vm.entry['color-class']}}\" ng-click=\"vm.entry.isVisible = !vm.entry.isVisible\">\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>{{vm.entry.icon}}</md-icon>\n      </md-button>\n    </div>\n\n    <div class=\"timeline-label\" ng-class=\"vm.bounce()\">\n      <h2>{{vm.personObject.name}} {{vm.personObject.surName}} <span> {{vm.entry.title}}</span></h2>\n      <p>{{vm.entry.text}}</p>\n    </div>\n  </div>\n\n</article>\n"
 
 /***/ },
 /* 33 */
@@ -935,7 +965,8 @@
 	                tooltip: oneGraph.title,
 	                tooltipDirection: 'top',
 	                icon: oneGraph.icon,
-	                type: oneGraph.type });
+	                type: oneGraph.type
+	            });
 	        });
 	    };
 	    WorkTileController.prototype.onSpeedDialClick = function (item) {

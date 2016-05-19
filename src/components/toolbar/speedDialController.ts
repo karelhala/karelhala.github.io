@@ -11,7 +11,6 @@ export default class SpeedDialController implements ng.IComponentOptions {
 
   /* @ngInject */
   constructor(private $window: any) {
-    console.log(this);
     this.container = angular.element(document.getElementById('content-container'));
   }
 

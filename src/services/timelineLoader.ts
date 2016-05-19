@@ -23,6 +23,7 @@ export default class TimelineLoader {
   }
 
   private fillObject(record) {
+    record.isVisible = false;
     record.timeObject = moment(record.time);
     record.getTime = () => {
       let timeString = '';

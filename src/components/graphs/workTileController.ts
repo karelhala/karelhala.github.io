@@ -29,8 +29,9 @@ export default class WorkTileController {
         tooltip: oneGraph.title,
         tooltipDirection: 'top',
         icon: oneGraph.icon,
-        type: oneGraph.type})
-    })
+        type: oneGraph.type
+      });
+    });
   }
 
   public onSpeedDialClick(item) {

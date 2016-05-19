@@ -4,12 +4,9 @@ export default class TimelineEntryController {
   public isLeft: boolean;
   public personObject: any;
   public entry: any;
-  public clicked = false;
 
   /* @ngInject */
-  public constructor(private $window: any) {
-    console.log(this);
-  }
+  public constructor(private $window: any) {}
 
   public getCurrentClasses() {
     return {
@@ -19,8 +16,8 @@ export default class TimelineEntryController {
 
   public bounce() {
     return {
-      'is-hidden': !this.clicked,
-      'bounce-in': this.clicked
+      'is-hidden': !this.entry.isVisible,
+      'bounce-in': this.entry.isVisible
     };
   }
 }
