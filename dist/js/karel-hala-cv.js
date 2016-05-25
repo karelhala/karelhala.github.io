@@ -118,7 +118,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content cv-timeline-trend\" id=\"timeline-trend\" layout=\"column\">\n    <div></div>\n    <timeline></timeline>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"work-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <work-tile flex-gt-sm=\"50\"></work-tile>\n      <school-tile flex-gt-sm=\"50\"></school-tile>\n    </div>\n  </div>\n\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"experience-graphs\">\n    <md-card>\n      <md-card-title>\n        <md-card-title-text>\n          <span class=\"md-headline\">Card with image</span>\n          <span class=\"md-subhead\">small</span>\n        </md-card-title-text>\n      </md-card-title>\n      <md-card-title-media>\n        <div class=\"card-media cv-graph cv-graph-small\" layout=\"row\">\n          <div id=\"exp-1\" style=\"width: 50%; height: 100%\"></div>\n          <div id=\"exp-2\" style=\"width: 50%; height: 100%\"></div>\n        </div>\n      </md-card-title-media>\n      <md-card-actions layout=\"row\" layout-align=\"end center\">\n        <md-button>Action 1</md-button>\n        <md-button>Action 2</md-button>\n      </md-card-actions>\n    </md-card>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content cv-contacts\" id=\"contacts\">\n    <contacts></contacts>\n  </div>\n</div>\n"
+	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content cv-timeline-trend\" id=\"timeline-trend\" layout=\"column\">\n    <div></div>\n    <timeline></timeline>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"work-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <work-tile flex-gt-sm=\"50\"></work-tile>\n      <school-tile flex-gt-sm=\"50\"></school-tile>\n    </div>\n  </div>\n\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"experience-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <md-card flex-gt-md=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with image</span>\n            <span class=\"md-subhead\">small</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-title-media>\n          <div class=\"card-media cv-graph cv-graph-small\" layout=\"row\">\n            <div id=\"exp-1\" style=\"width: 50%; height: 100%\"></div>\n            <div id=\"exp-2\" style=\"width: 50%; height: 100%\"></div>\n          </div>\n        </md-card-title-media>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n          <md-button>Action 1</md-button>\n          <md-button>Action 2</md-button>\n        </md-card-actions>\n      </md-card>\n      <md-card flex-gt-md=\"50\">\n        <md-card-title>\n          <md-card-title-text>\n            <span class=\"md-headline\">Card with image</span>\n            <span class=\"md-subhead\">small</span>\n          </md-card-title-text>\n        </md-card-title>\n        <md-card-title-media>\n          <div class=\"card-media cv-graph cv-graph-small\" layout=\"row\">\n            <div id=\"exp-3\" style=\"width: 50%; height: 100%\"></div>\n            <div id=\"exp-4\" style=\"width: 50%; height: 100%\"></div>\n          </div>\n        </md-card-title-media>\n        <md-card-actions layout=\"row\" layout-align=\"end center\">\n          <md-button>Action 1</md-button>\n          <md-button>Action 2</md-button>\n        </md-card-actions>\n      </md-card>\n    </div>\n\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content cv-contacts\" id=\"contacts\">\n    <contacts></contacts>\n  </div>\n</div>\n"
 
 /***/ },
 /* 9 */
@@ -947,7 +947,7 @@
 	    function GraphTileComponent(controller) {
 	        this.controller = controller;
 	        this.replace = true;
-	        this.template = __webpack_require__(46);
+	        this.template = __webpack_require__(41);
 	        this.controllerAs = 'vm';
 	        this.bindings = {};
 	    }
@@ -958,7 +958,12 @@
 
 
 /***/ },
-/* 41 */,
+/* 41 */
+/***/ function(module, exports) {
+
+	module.exports = "<md-card>\n  <md-card-title>\n    <md-card-title-text>\n      <span class=\"md-headline\">{{vm.tileTitle}}</span>\n    </md-card-title-text>\n  </md-card-title>\n  <md-card-content layout=\"row\" layout-align=\"space-between\">\n    <div class=\"card-media cv-graph\">\n      <basic-graph type=\"vm.tileData.graphData.type\"\n                   data=\"vm.tileData.graphData.data\"\n                   colors=\"vm.tileData.graphData.colors\"\n                   names=\"vm.tileData.graphData.names\" id=\"{{vm.graphId}}\">\n      </basic-graph>\n    </div>\n    <md-card-actions layout=\"column\">\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>mode_comment</md-icon>\n      </md-button>\n      <speed-dial items=\"vm.speedDialItems\" direction=\"'down'\" on-click=\"vm.onSpeedDialClick(item)\"></speed-dial>\n    </md-card-actions>\n  </md-card-content>\n</md-card>\n"
+
+/***/ },
 /* 42 */
 /***/ function(module, exports) {
 
@@ -1061,13 +1066,6 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 45 */,
-/* 46 */
-/***/ function(module, exports) {
-
-	module.exports = "<md-card>\n  <md-card-title>\n    <md-card-title-text>\n      <span class=\"md-headline\">{{vm.tileTitle}}</span>\n    </md-card-title-text>\n  </md-card-title>\n  <md-card-content layout=\"row\" layout-align=\"space-between\">\n    <div class=\"card-media cv-graph\">\n      <basic-graph type=\"vm.tileData.graphData.type\"\n                   data=\"vm.tileData.graphData.data\"\n                   colors=\"vm.tileData.graphData.colors\"\n                   names=\"vm.tileData.graphData.names\" id=\"{{vm.graphId}}\">\n      </basic-graph>\n    </div>\n    <md-card-actions layout=\"column\">\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>mode_comment</md-icon>\n      </md-button>\n      <speed-dial items=\"vm.speedDialItems\" direction=\"'down'\" on-click=\"vm.onSpeedDialClick(item)\"></speed-dial>\n    </md-card-actions>\n  </md-card-content>\n</md-card>\n"
 
 /***/ }
 /******/ ]);

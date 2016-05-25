@@ -56,6 +56,24 @@
             type: 'gauge'
         }
     });
+        c3.generate({
+            bindto: '#exp-3',
+            data: {
+                columns: [
+                    ['data', 91.4]
+                ],
+                type: 'gauge'
+            }
+        });
+        c3.generate({
+            bindto: '#exp-4',
+            data: {
+                columns: [
+                    ['data', 91.4]
+                ],
+                type: 'gauge'
+            }
+        });
     }, 1000)
 </script>
 <script src=".//dist/js/karel-hala-cv.js"></script></body>
