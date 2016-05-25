@@ -50,6 +50,11 @@
 .c3 svg {
   height: 100%;
   width: 100%; }
+
+@media screen and (max-width: 480px) {
+  .cv-graph.cv-graph-small {
+    height: 100px;
+    width: 100%; } }
 /* Custom changes */
 .timeline-end {
   margin-left: -13px;

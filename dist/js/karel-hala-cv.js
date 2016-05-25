@@ -46,7 +46,7 @@
 
 	__webpack_require__(1);
 	__webpack_require__(5);
-	module.exports = __webpack_require__(43);
+	module.exports = __webpack_require__(44);
 
 
 /***/ },
@@ -118,7 +118,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content cv-timeline-trend\" id=\"timeline-trend\" layout=\"column\">\n    <div></div>\n    <timeline></timeline>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"work-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <work-tile flex-gt-sm=\"50\"></work-tile>\n    </div>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content cv-contacts\" id=\"contacts\">\n    <contacts></contacts>\n  </div>\n</div>\n"
+	module.exports = "<div>\n  <div class=\"md-whiteframe-3dp cv-content cv-timeline-trend\" id=\"timeline-trend\" layout=\"column\">\n    <div></div>\n    <timeline></timeline>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"work-graphs\">\n    <div layout-gt-md=\"row\" layout-xs=\"column\">\n      <work-tile flex-gt-sm=\"50\"></work-tile>\n      <school-tile flex-gt-sm=\"50\"></school-tile>\n    </div>\n  </div>\n\n  <div class=\"md-whiteframe-3dp cv-content\" id=\"experience-graphs\">\n    <md-card>\n      <md-card-title>\n        <md-card-title-text>\n          <span class=\"md-headline\">Card with image</span>\n          <span class=\"md-subhead\">small</span>\n        </md-card-title-text>\n      </md-card-title>\n      <md-card-title-media>\n        <div class=\"card-media cv-graph cv-graph-small\" layout=\"row\">\n          <div id=\"exp-1\" style=\"width: 50%; height: 100%\"></div>\n          <div id=\"exp-2\" style=\"width: 50%; height: 100%\"></div>\n        </div>\n      </md-card-title-media>\n      <md-card-actions layout=\"row\" layout-align=\"end center\">\n        <md-button>Action 1</md-button>\n        <md-button>Action 2</md-button>\n      </md-card-actions>\n    </md-card>\n  </div>\n  <div class=\"md-whiteframe-3dp cv-content cv-contacts\" id=\"contacts\">\n    <contacts></contacts>\n  </div>\n</div>\n"
 
 /***/ },
 /* 9 */
@@ -341,9 +341,11 @@
 
 /***/ },
 /* 15 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	///<reference path="../tsd.d.ts"/>
+	var moment = __webpack_require__(11);
 	var SchoolLoader = (function () {
 	    /* @ngInject */
 	    function SchoolLoader($http) {
@@ -358,10 +360,26 @@
 	        }
 	        else {
 	            return this.loadSchoolsObject().then(function (schoolData) {
-	                _this.schoolData = schoolData;
+	                _this.schoolData.data = schoolData;
+	                _this.fillObject(schoolData);
 	                return _this.schoolData;
 	            });
 	        }
+	    };
+	    SchoolLoader.prototype.fillObject = function (record) {
+	        var _this = this;
+	        this.schoolData.graphData = {
+	            colors: {},
+	            type: '',
+	            data: [],
+	            names: {}
+	        };
+	        angular.forEach(record, function (oneChool) {
+	            _this.schoolData.graphData.colors[oneChool.id] = oneChool.color;
+	            _this.schoolData.graphData.names[oneChool.id] = oneChool.name;
+	            var data = moment.duration(moment(oneChool.outTime).diff(moment(oneChool.inTime)));
+	            _this.schoolData.graphData.data.push([oneChool.id, Math.round(data.asMonths())]);
+	        });
 	    };
 	    SchoolLoader.prototype.loadSchoolsObject = function () {
 	        return this.$http.get('/data/schools.json').then(function (responseData) {
@@ -427,6 +445,12 @@
 	                tooltip: 'Graphs',
 	                tooltipDirection: 'right',
 	                icon: 'equalizer',
+	            },
+	            {
+	                scrollTo: 'experience-graphs',
+	                tooltip: 'Experiences',
+	                tooltipDirection: 'right',
+	                icon: 'explore',
 	            },
 	            {
 	                scrollTo: 'contacts',
@@ -828,11 +852,14 @@
 	"use strict";
 	///<reference path="../../tsd.d.ts"/>
 	var basicGraphDirective_1 = __webpack_require__(38);
-	var workTileComponent_1 = __webpack_require__(40);
+	var graphTileComponent_1 = __webpack_require__(40);
+	var workTileController_1 = __webpack_require__(42);
+	var schoolTileController_1 = __webpack_require__(43);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.directive('basicGraph', basicGraphDirective_1.default.Factory());
-	    module.component('workTile', new workTileComponent_1.default);
+	    module.component('workTile', new graphTileComponent_1.default(workTileController_1.default));
+	    module.component('schoolTile', new graphTileComponent_1.default(schoolTileController_1.default));
 	};
 
 
@@ -916,23 +943,23 @@
 
 	///<reference path="../../tsd.d.ts"/>
 	"use strict";
-	var workTileController_1 = __webpack_require__(41);
-	var WorkTileComponent = (function () {
-	    function WorkTileComponent() {
+	var GraphTileComponent = (function () {
+	    function GraphTileComponent(controller) {
+	        this.controller = controller;
 	        this.replace = true;
-	        this.template = __webpack_require__(42);
-	        this.controller = workTileController_1.default;
+	        this.template = __webpack_require__(46);
 	        this.controllerAs = 'vm';
 	        this.bindings = {};
 	    }
-	    return WorkTileComponent;
+	    return GraphTileComponent;
 	}());
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = WorkTileComponent;
+	exports.default = GraphTileComponent;
 
 
 /***/ },
-/* 41 */
+/* 41 */,
+/* 42 */
 /***/ function(module, exports) {
 
 	///<reference path="../../tsd.d.ts"/>
@@ -942,6 +969,8 @@
 	    function WorkTileController(jobsLoader) {
 	        var _this = this;
 	        this.jobsLoader = jobsLoader;
+	        this.graphId = 'work-tile';
+	        this.tileTitle = 'Jobs per month';
 	        this.availableGraphs = [
 	            { icon: 'donut_large', type: 'donut', title: 'Donut chart' },
 	            { icon: 'pie_chart', type: 'pie', title: 'Pie chart' },
@@ -952,8 +981,8 @@
 	        var jobsData = this.jobsLoader.getJobsData();
 	        if (jobsData.hasOwnProperty('$$state')) {
 	            jobsData.then(function (workData) {
-	                _this.workData = workData;
-	                _this.workData.graphData.type = _this.availableGraphs[0].type;
+	                _this.tileData = workData;
+	                _this.tileData.graphData.type = _this.availableGraphs[0].type;
 	            });
 	        }
 	    }
@@ -970,7 +999,7 @@
 	        });
 	    };
 	    WorkTileController.prototype.onSpeedDialClick = function (item) {
-	        this.workData.graphData.type = item.type;
+	        this.tileData.graphData.type = item.type;
 	    };
 	    return WorkTileController;
 	}());
@@ -979,16 +1008,66 @@
 
 
 /***/ },
-/* 42 */
-/***/ function(module, exports) {
-
-	module.exports = "<md-card>\n  <md-card-title>\n    <md-card-title-text>\n      <span class=\"md-headline\">Months per each job</span>\n    </md-card-title-text>\n  </md-card-title>\n  <md-card-content layout=\"row\" layout-align=\"space-between\">\n    <div class=\"card-media cv-graph\">\n      <basic-graph type=\"vm.workData.graphData.type\"\n                   data=\"vm.workData.graphData.data\"\n                   colors=\"vm.workData.graphData.colors\"\n                   names=\"vm.workData.graphData.names\" id=\"work\">\n      </basic-graph>\n    </div>\n    <md-card-actions layout=\"column\">\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>mode_comment</md-icon>\n      </md-button>\n      <speed-dial items=\"vm.speedDialItems\" direction=\"'down'\" on-click=\"vm.onSpeedDialClick(item)\"></speed-dial>\n    </md-card-actions>\n  </md-card-content>\n</md-card>\n"
-
-/***/ },
 /* 43 */
 /***/ function(module, exports) {
 
+	///<reference path="../../tsd.d.ts"/>
+	"use strict";
+	var SchoolTileController = (function () {
+	    /* @ngInject */
+	    function SchoolTileController(schoolLoader) {
+	        var _this = this;
+	        this.schoolLoader = schoolLoader;
+	        this.graphId = 'work-tile';
+	        this.tileTitle = 'Schools per month';
+	        this.availableGraphs = [
+	            { icon: 'donut_large', type: 'donut', title: 'Donut chart' },
+	            { icon: 'pie_chart', type: 'pie', title: 'Pie chart' },
+	            { icon: 'equalizer', type: 'bar', title: 'Bar chart' }
+	        ];
+	        this.speedDialItems = [];
+	        this.initSpeedDial();
+	        var jobsData = this.schoolLoader.getJobsData();
+	        if (jobsData.hasOwnProperty('$$state')) {
+	            jobsData.then(function (schoolData) {
+	                _this.tileData = schoolData;
+	                _this.tileData.graphData.type = _this.availableGraphs[0].type;
+	            });
+	        }
+	    }
+	    SchoolTileController.$inject = ["schoolLoader"];
+	    SchoolTileController.prototype.initSpeedDial = function () {
+	        var _this = this;
+	        angular.forEach(this.availableGraphs, function (oneGraph) {
+	            _this.speedDialItems.push({
+	                tooltip: oneGraph.title,
+	                tooltipDirection: 'top',
+	                icon: oneGraph.icon,
+	                type: oneGraph.type
+	            });
+	        });
+	    };
+	    SchoolTileController.prototype.onSpeedDialClick = function (item) {
+	        this.tileData.graphData.type = item.type;
+	    };
+	    return SchoolTileController;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = SchoolTileController;
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 45 */,
+/* 46 */
+/***/ function(module, exports) {
+
+	module.exports = "<md-card>\n  <md-card-title>\n    <md-card-title-text>\n      <span class=\"md-headline\">{{vm.tileTitle}}</span>\n    </md-card-title-text>\n  </md-card-title>\n  <md-card-content layout=\"row\" layout-align=\"space-between\">\n    <div class=\"card-media cv-graph\">\n      <basic-graph type=\"vm.tileData.graphData.type\"\n                   data=\"vm.tileData.graphData.data\"\n                   colors=\"vm.tileData.graphData.colors\"\n                   names=\"vm.tileData.graphData.names\" id=\"{{vm.graphId}}\">\n      </basic-graph>\n    </div>\n    <md-card-actions layout=\"column\">\n      <md-button class=\"md-icon-button\" aria-label=\"Settings\">\n        <md-icon>mode_comment</md-icon>\n      </md-button>\n      <speed-dial items=\"vm.speedDialItems\" direction=\"'down'\" on-click=\"vm.onSpeedDialClick(item)\"></speed-dial>\n    </md-card-actions>\n  </md-card-content>\n</md-card>\n"
 
 /***/ }
 /******/ ]);

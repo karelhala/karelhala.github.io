@@ -1,15 +1,15 @@
 [
   {
     "id": "data1",
-    "color": "#cc2424",
-    "name": "Hight school",
+    "color": "#00a651",
+    "name": "High school",
     "inTime": 1157068800000,
     "outTime": 1283299200000,
     "text": "Some placeholder text"
   },
   {
     "id": "data2",
-    "color": "#fad839",
+    "color": "#21a9e1",
     "name": "University (FIT)",
     "inTime": 1283299200000,
     "outTime": 1409529600000,
@@ -17,7 +17,7 @@
   },
   {
     "id": "data3",
-    "color": "#303641",
+    "color": "#ee4749",
     "name": "University (FP)",
     "inTime": 1409529600000,
     "isCurrent": true,

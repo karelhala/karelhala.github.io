@@ -1,10 +1,10 @@
 ///<reference path="../../tsd.d.ts"/>
 
-export default class WorkTileController {
+export default class SchoolTileController {
   public graphData: any;
   public tileData: any;
   public graphId = 'work-tile';
-  public tileTitle = 'Jobs per month';
+  public tileTitle = 'Schools per month';
   public availableGraphs = [
     {icon: 'donut_large', type: 'donut', title: 'Donut chart'},
     {icon: 'pie_chart', type: 'pie', title: 'Pie chart'},
@@ -14,12 +14,12 @@ export default class WorkTileController {
   public speedDialItems: any[] = [];
   public speedDialDirection: 'left';
   /* @ngInject */
-  constructor(private jobsLoader: any) {
+  constructor(private schoolLoader: any) {
     this.initSpeedDial();
-    let jobsData = this.jobsLoader.getJobsData();
+    let jobsData = this.schoolLoader.getJobsData();
     if (jobsData.hasOwnProperty('$$state')) {
-      jobsData.then((workData) => {
-        this.tileData = workData;
+      jobsData.then((schoolData) => {
+        this.tileData = schoolData;
         this.tileData.graphData.type = this.availableGraphs[0].type;
       });
     }

@@ -36,6 +36,12 @@ export default class BasicInformationController {
         icon: 'equalizer',
       },
       {
+        scrollTo: 'experience-graphs',
+        tooltip: 'Experiences',
+        tooltipDirection: 'right',
+        icon: 'explore',
+      },
+      {
         scrollTo: 'contacts',
         tooltip: 'Contacts',
         tooltipDirection: 'right',
