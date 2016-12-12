@@ -24,7 +24,7 @@ export default class BasicInformationLoader {
     personData.dateObject = moment(personData.bornTimeStamp);
     personData.getAge = () => {
       personData.diffTime = moment.duration(moment().diff(personData.dateObject));
-      return Math.round(personData.diffTime.asYears());
+      return Math.floor(personData.diffTime.asYears());
     };
   }
 
